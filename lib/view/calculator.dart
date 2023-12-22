@@ -166,7 +166,7 @@ class _CalculatorState extends State<Calculator> {
                     children: [
                       const ButtonBackspace(),
                       const ButtonOperator(text: '+'),
-                      const ButtonNumber(text: '-'),
+                      const ButtonOperator(text: '-'),
                       LongButton(
                         height: 115,
                         child: Text(
