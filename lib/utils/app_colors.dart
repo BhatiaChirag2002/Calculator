@@ -13,7 +13,7 @@ class AppLightModeColors {
 class AppDarkModeColors {
   static Color backgroundColor = const Color(0xff1c1c1c);
   static Color buttonBackgroundColor = const Color(0xff282828);
-  static Color buttonColor = const Color(0xff0c9471);
+  static Color buttonColor = const Color(0xff02a681);
   static Color buttonNumColor = const Color(0xFF000000);
   static Color buttonHighlightColor = const Color(0xff5ed5e1);
   static Color buttonInsideColor = const Color(0xffffffff);
