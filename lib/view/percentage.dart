@@ -1,8 +1,10 @@
+import 'package:calculator/controller/percentage_controller.dart';
 import 'package:calculator/utils/app_colors.dart';
 import 'package:calculator/widget/appbar.dart';
 import 'package:calculator/widget/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class Percentage extends StatefulWidget {
   const Percentage({super.key});
@@ -14,6 +16,7 @@ class Percentage extends StatefulWidget {
 class _PercentageState extends State<Percentage> {
   @override
   Widget build(BuildContext context) {
+    PercentageController percentageController = Get.put(PercentageController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -44,6 +47,8 @@ class _PercentageState extends State<Percentage> {
                   SizedBox(
                     width: 210.w,
                     child: TextFormField(
+                      controller:
+                          percentageController.totalMarksController.value,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.end,
                       style: Theme.of(context).textTheme.displayMedium,
@@ -80,6 +85,8 @@ class _PercentageState extends State<Percentage> {
                   SizedBox(
                     width: 190.w,
                     child: TextFormField(
+                      controller:
+                          percentageController.scoredMarksController.value,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.end,
                       style: Theme.of(context).textTheme.displayMedium,
@@ -98,7 +105,7 @@ class _PercentageState extends State<Percentage> {
           ),
           const CalculateButton(),
           Padding(
-            padding: EdgeInsets.only(left: 6.w, right: 6.w,top: 10.h),
+            padding: EdgeInsets.only(left: 6.w, right: 6.w, top: 10.h),
             child: Container(
               height: 40.h,
               decoration: BoxDecoration(
@@ -116,14 +123,16 @@ class _PercentageState extends State<Percentage> {
                   ),
                   SizedBox(
                       width: 190.w,
-                      child: Text('20%',style: Theme.of(context).textTheme.labelSmall,)
-                  ),
+                      child: Obx(() => Text(
+                            '${percentageController.percentage.value.toStringAsFixed(1)}%',
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ))),
                 ],
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 6.w, right: 6.w,top: 10.h),
+            padding: EdgeInsets.only(left: 6.w, right: 6.w, top: 10.h),
             child: Container(
               height: 40.h,
               decoration: BoxDecoration(
@@ -141,17 +150,16 @@ class _PercentageState extends State<Percentage> {
                   ),
                   SizedBox(
                       width: 190.w,
-                      child: Text('5.2',style: Theme.of(context).textTheme.labelSmall,)
-                  ),
+                      child: Obx(() => Text(
+                            percentageController.cgpa.value.toStringAsFixed(1),
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ))),
                 ],
               ),
             ),
           ),
-
         ],
       ),
     );
   }
 }
-
-

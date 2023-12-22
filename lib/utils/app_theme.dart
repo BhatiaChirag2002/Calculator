@@ -44,7 +44,7 @@ class Themes {
             color: AppLightModeColors.textColor,
             fontWeight: FontWeight.w600),
         labelSmall:
-        TextStyle(fontSize: 20.sp, color: AppLightModeColors.textColor)),
+            TextStyle(fontSize: 20.sp, color: AppLightModeColors.textColor)),
     scaffoldBackgroundColor: AppLightModeColors.backgroundColor,
     appBarTheme: AppBarTheme(
         iconTheme: IconThemeData(color: AppLightModeColors.buttonInsideColor)),
@@ -88,11 +88,11 @@ class Themes {
               color: AppDarkModeColors.textColor,
               fontWeight: FontWeight.w600),
           labelSmall:
-          TextStyle(fontSize: 20.sp, color: AppDarkModeColors.textColor)),
+              TextStyle(fontSize: 20.sp, color: AppDarkModeColors.textColor)),
       scaffoldBackgroundColor: AppDarkModeColors.backgroundColor,
       appBarTheme: AppBarTheme(
           iconTheme:
-          IconThemeData(color: AppDarkModeColors.buttonInsideColor)));
+              IconThemeData(color: AppDarkModeColors.buttonInsideColor)));
 }
 
 class ThemeService {

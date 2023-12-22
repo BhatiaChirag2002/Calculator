@@ -1,4 +1,5 @@
-import 'package:calculator/my_flutter_app_icons.dart';
+import 'package:calculator/controller/calculator_controller.dart';
+import 'package:calculator/utils/my_flutter_app_icons.dart';
 import 'package:calculator/utils/app_colors.dart';
 import 'package:calculator/utils/app_theme.dart';
 import 'package:calculator/view/gst.dart';
@@ -18,6 +19,7 @@ class Calculator extends StatefulWidget {
 class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
+    CalculatorController calculatorController = Get.put(CalculatorController());
     return Scaffold(
       appBar: AppBar(
           toolbarHeight: 35.h,
@@ -29,46 +31,43 @@ class _CalculatorState extends State<Calculator> {
                 child: Row(
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        Get.to(const Gst());
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).brightness == Brightness.light
-                                ? AppLightModeColors.buttonColor
-                                : AppDarkModeColors.buttonColor,
-                        shape: const CircleBorder(),
-                        padding: EdgeInsets.all(6.sp),
-                      ),
-                      child: Icon(
-                              MyFlutterApp.gst,
-                              color: Get.isDarkMode
-                                  ? AppLightModeColors.buttonInsideColor
-                                  : AppDarkModeColors.buttonInsideColor,
-                              size: 22.sp,
-                            )
-                    ),
+                        onPressed: () {
+                          Get.to(const Gst());
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? AppLightModeColors.buttonColor
+                                  : AppDarkModeColors.buttonColor,
+                          shape: const CircleBorder(),
+                          padding: EdgeInsets.all(6.sp),
+                        ),
+                        child: Icon(
+                          MyFlutterApp.gst,
+                          color: Get.isDarkMode
+                              ? AppLightModeColors.buttonInsideColor
+                              : AppDarkModeColors.buttonInsideColor,
+                          size: 22.sp,
+                        )),
                     ElevatedButton(
-                      onPressed: () {
-                        Get.to(const Percentage());
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).brightness == Brightness.light
-                                ? AppLightModeColors.buttonColor
-                                : AppDarkModeColors.buttonColor,
-                        shape: const CircleBorder(),
-                        padding: EdgeInsets.all(6.sp),
-                      ),
-                      child: Icon(
-                              MyFlutterApp.marks,
-                              color: Get.isDarkMode
-                                  ? AppLightModeColors.buttonInsideColor
-                                  : AppDarkModeColors.buttonInsideColor,
-                              size: 22.sp,
-                            )
-                    ),
-
+                        onPressed: () {
+                          Get.to(const Percentage());
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? AppLightModeColors.buttonColor
+                                  : AppDarkModeColors.buttonColor,
+                          shape: const CircleBorder(),
+                          padding: EdgeInsets.all(6.sp),
+                        ),
+                        child: Icon(
+                          MyFlutterApp.marks,
+                          color: Get.isDarkMode
+                              ? AppLightModeColors.buttonInsideColor
+                              : AppDarkModeColors.buttonInsideColor,
+                          size: 22.sp,
+                        )),
                   ],
                 ),
               ),
@@ -99,30 +98,29 @@ class _CalculatorState extends State<Calculator> {
             ],
           )),
       body: Column(children: [
-        Expanded(
-          child: SizedBox(
-            width: 350.w,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  '100+200',
-                  style: Theme.of(context).textTheme.headlineLarge,
-                  textAlign: TextAlign.end,
-                ),
-                Text(
-                  '300',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  textAlign: TextAlign.end,
-                ),
-              ],
-            ),
-          ),
+        Spacer(),
+        SizedBox(
+          width: 350.w,
+          child: Obx(() => Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    calculatorController.input.value,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                    textAlign: TextAlign.end,
+                  ),
+                  Text(
+                    calculatorController.output.value,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                    textAlign: TextAlign.end,
+                  ),
+                ],
+              )),
         ),
         Padding(
           padding: EdgeInsets.only(
-            top: 30.h,
+            top: 10.h,
             bottom: 5.h,
           ),
           child: Container(
@@ -135,9 +133,9 @@ class _CalculatorState extends State<Calculator> {
                   borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(30),
                       topLeft: Radius.circular(30))),
-              child: const Row(
+              child: Row(
                 children: [
-                  Column(
+                  const Column(
                     children: [
                       ButtonOperator(text: 'AC'),
                       ButtonNumber(text: '7'),
@@ -146,7 +144,7 @@ class _CalculatorState extends State<Calculator> {
                       ButtonNumber(text: '00'),
                     ],
                   ),
-                  Column(
+                  const Column(
                     children: [
                       ButtonOperator(text: '/'),
                       ButtonNumber(text: '8'),
@@ -155,7 +153,7 @@ class _CalculatorState extends State<Calculator> {
                       ButtonNumber(text: '0'),
                     ],
                   ),
-                  Column(
+                  const Column(
                     children: [
                       ButtonOperator(text: '×'),
                       ButtonNumber(text: '9'),
@@ -166,10 +164,19 @@ class _CalculatorState extends State<Calculator> {
                   ),
                   Column(
                     children: [
-                      ButtonBackspace(),
-                      ButtonOperator(text: '+'),
-                      ButtonNumber(text: '-'),
-                      LongButton(text: '=',height: 115,)
+                      const ButtonBackspace(),
+                      const ButtonOperator(text: '+'),
+                      const ButtonNumber(text: '-'),
+                      LongButton(
+                        height: 115,
+                        child: Text(
+                          '=',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        onTap: () {
+                          calculatorController.onButtonPress('=');
+                        },
+                      )
                     ],
                   )
                 ],
@@ -179,5 +186,3 @@ class _CalculatorState extends State<Calculator> {
     );
   }
 }
-
-
