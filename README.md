@@ -37,4 +37,4 @@ https://github.com/BhatiaChirag2002/Calculator/assets/132827771/c5c383c2-0e58-4c
 
 ### Installation
 
-1. Download the [Calculator.apk]([your-apk-link](https://drive.google.com/file/d/1ttGbdQSOodIVgneReJfiGn3VYKbEjEYg/view?usp=drive_link)https://drive.google.com/file/d/1ttGbdQSOodIVgneReJfiGn3VYKbEjEYg/view?usp=drive_link) file to your Android device.
+1. Download the [Calculator.apk](https://drive.google.com/file/d/1ttGbdQSOodIVgneReJfiGn3VYKbEjEYg/view?usp=drive_link) file to your Android device.
