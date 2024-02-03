@@ -25,7 +25,7 @@ https://github.com/BhatiaChirag2002/Calculator/assets/132827771/c5c383c2-0e58-4c
 
 ## Usage
 
-1. Open the MultiCalc app on your device.
+1. Open the Calculator app on your device.
 2. Choose the desired calculator from the main menu.
 3. Enter the necessary input values.
 4. View the calculated result.
